@@ -10,6 +10,8 @@ constructor({ blockchain, transactionPool, wallet, pubsub }) {
 
 mineTransactions() {
   const validTransactions = this.transactionPool.validTransactions();
+    console.log('validTransactions', validTransactions);
+    console.log('validTransactions.map(vt => vt.id)', validTransactions.map(vt => vt.id));
 
   validTransactions.push(
       Transaction.rewardTransaction({ minerWallet: this.wallet })

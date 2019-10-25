@@ -41,7 +41,7 @@ class PubSub {
 
   subscribeToChannels() {
     this.pubnub.subscribe({
-      channels: Object.values(CHANNELS)
+      channels: [Object.values(CHANNELS)]
     });
   }
 
@@ -53,7 +53,7 @@ class PubSub {
         console.log(`Message received. Channel: ${channel}. Message: ${message}.`);
         const parsedMessage = JSON.parse(message);
 
-        switch (channel) {
+        switch(channel) {
           case CHANNELS.BLOCKCHAIN:
             this.blockchain.replaceChain(parsedMessage, true, () => {
               this.transactionPool.clearBlockchainTransactions(
@@ -78,7 +78,7 @@ class PubSub {
 
   publish({ channel, message }) {
 
-    this.pubnub.publish({ channel, message });
+    this.pubnub.publish({ message, channel });
   }
 
   broadcastChain() {
