@@ -92,7 +92,7 @@ app.get('/api/known-addresses', (req, res) => {
 
       recipient.forEach(recipient => addressMap[recipient] = recipient);
     }
-  }  
+  }
 
     res.json(Object.keys(addressMap));
 });
